@@ -1,0 +1,4 @@
+*.sqlite3
+dgpf_scopetest/__pycache__/
+dgpf_scopetest/local_settings.py
+venv/
