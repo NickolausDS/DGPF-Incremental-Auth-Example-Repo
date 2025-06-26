@@ -36,13 +36,19 @@ def index(request: HttpRequest) -> HttpResponse:
 def transfer(request: HttpRequest) -> HttpResponse:
     form = forms.TransferForm(request.GET or None)
 
-    # form["data"]["source_collection"] = "6c54cade-bde5-45c1-bdea-f4bd71dba2cc"
-    # form["data"]["source_path"] = "/home/share/godata/"
-
-    if form.is_valid():
+    if request.POST and form.is_valid():
         # You could actually save through AJAX and return a success code here
+        transfer_client = gclients.load_transfer_client(request.user)
+        tdata = globus_sdk.TransferData(
+            transfer_client,
+            # Globus Tutorial Collection 1
+            "6c54cade-bde5-45c1-bdea-f4bd71dba2cc",
+            form.endpoint_id,
+            label="SDK example",
+            sync_level="checksum",
+        )
+        tdata.add_item("/home/share/godata/", form.path, recursive=True)
+        transfer_result = transfer_client.submit_transfer(tdata)
         log.info("Transfer Started!")
-        # form.save()
-        # return {'success': True}
 
     return render(request, "transfer.html", {"form": form})
