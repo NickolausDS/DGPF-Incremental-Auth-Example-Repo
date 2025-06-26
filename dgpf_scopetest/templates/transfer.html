@@ -1,0 +1,12 @@
+{%extends "basesite.html"%}
+{% load static index_template crispy_forms_tags %}
+
+
+{% block content %}
+<h1>Globus Transfer</h1>
+
+<p>This page will transfer data from the Globus Tutorial 1 Globus Mapped Collection</p>
+<a href="https://app.globus.org/helpers/browse-collections?action=http://localhost:8000/transfer&method=GET" class="btn btn-info" role="button">Select Destination</a>
+{% load crispy_forms_tags %}
+{% crispy form  %}
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "basesite.html" %}
+
+{% block content %}
+<h1>Tokens</h1>
+<table class="table">
+<thead>
+    <tr>
+    <th scope="col">#</th>
+    <th scope="col">Resource Server</th>
+    <th scope="col">Scope</th>
+    <th scope="col">Expires In</th>
+    </tr>
+</thead>
+<tbody>
+    {% for token_data in other_tokens %}
+    <tr>
+    <th scope="row">1</th>
+    <td>{{token_data.resource_server}}</td>
+    <td>{{token_data.scope}}</td>
+    <td>{{token_data.expires_in}}</td>
+    </tr>
+    {% endfor %}
+</tbody>
+</table>
+{% endblock %}

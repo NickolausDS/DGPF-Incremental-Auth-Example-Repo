@@ -1,0 +1,44 @@
+{% extends "globus-portal-framework/v3/base.html" %}
+{% load is_active index_template is_active %}
+
+
+{% block body %}
+
+<div class="row">
+  <div class="col">
+    <h2 class="text-center mt-3 mb-5">{{project_title}}</h2>
+  </div>
+</div>
+
+<div class="subnav mt-auto bottom-border-0">
+  <ul class="nav nav-tabs nav-search-nav ml-5">
+      <li class="mt-auto">
+      <a class="btn btn-primary btn-lg border-0 squared {% is_active request 'search' index=globus_portal_framework.index %}" role="button"
+        href="">Index</a>
+    </li>
+    <li class="mt-auto">
+      <a class="btn btn-primary btn-lg border-0 squared {% is_active request 'search' index=globus_portal_framework.index %}" role="button"
+        href="{% url 'transfer'  %}">Transfer</a>
+    </li>
+    <li class="mt-auto">
+      <a class="btn btn-primary btn-lg border-0 squared {% is_active request 'search' index=globus_portal_framework.index %}" role="button"
+        href="{% url 'search' 'perfdata' %}">Search</a>
+    </li>
+  </ul>
+</div>
+
+
+<div class="row mb-5">
+  <div class="col"></div>
+  <div class="col-10">
+    <div>
+
+        {% block content %}
+
+        {% endblock %}
+    </div>
+  </div>
+  <div class="col"></div>
+</div>
+
+{% endblock %}
