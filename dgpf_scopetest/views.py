@@ -21,6 +21,7 @@ from globus_portal_framework import (
     GroupsException,
 )
 from dgpf_scopetest import forms
+from globus_portal_framework.decorators import scopes_required
 
 log = logging.getLogger(__name__)
 
@@ -33,12 +34,26 @@ def index(request: HttpRequest) -> HttpResponse:
     return render(request, "index.html", user_data)
 
 
+@scopes_required([globus_sdk.TransferClient.scopes.all])
 def transfer(request: HttpRequest) -> HttpResponse:
+    """
+    Three possible ways to solve this problem.
+
+    1. Set ScopeRequired(scopes) decorator
+    2. Return a redirect manually
+    3. Raise an exception and handle it 
+    """
+    from globus_portal_framework.exc import ScopesRequired
+    # try:
+    transfer_client = gclients.load_transfer_client(request.user)
+    # except ValueError:
+    #     raise ScopesRequired(scope=str(globus_sdk.TransferClient.scopes.all))
+
     form = forms.TransferForm(request.GET or None)
 
     if request.POST and form.is_valid():
         # You could actually save through AJAX and return a success code here
-        transfer_client = gclients.load_transfer_client(request.user)
+        # transfer_client = gclients.load_transfer_client(request.user)
         tdata = globus_sdk.TransferData(
             transfer_client,
             # Globus Tutorial Collection 1
