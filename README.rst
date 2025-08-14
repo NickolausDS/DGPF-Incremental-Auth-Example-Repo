@@ -14,7 +14,9 @@ Setup
 
 If you want to play with the portal, do the following:
 
-Create a dgpf_scopetest.local_settings.py file and add the following: 
+1. Clone the repo
+2. Install the branch here: https://github.com/globus/django-globus-portal-framework/pull/258
+3. Create a dgpf_scopetest.local_settings.py file and add the following:
 
 .. code-block::
 
