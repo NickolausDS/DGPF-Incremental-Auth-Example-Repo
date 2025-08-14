@@ -117,7 +117,7 @@ def flow_start(request: HttpRequest) -> HttpResponse:
     Start the specified flow. Login if needed
     """
     selected_flow = dgpf_scopetest.utils.get_selected_flow(request)
-    flow_id = selected_flow.get("id")
+    flow_id = selected_flow.get("flow_id")
     if not flow_id:
         messages.error(request, "You need to select a flow.")
         return redirect("flows")
