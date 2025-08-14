@@ -11,27 +11,49 @@
 </div>
 
 <div class="subnav mt-auto bottom-border-0">
-  <ul class="nav nav-tabs nav-search-nav ml-5">
+  <ul class="nav nav-tabs">
       <li class="mt-auto">
       <a class="btn btn-primary btn-lg border-0 squared {% is_active request 'search' index=globus_portal_framework.index %}" role="button"
-        href="">Index</a>
+        href="/">Index</a>
     </li>
     <li class="mt-auto">
       <a class="btn btn-primary btn-lg border-0 squared {% is_active request 'search' index=globus_portal_framework.index %}" role="button"
         href="{% url 'transfer'  %}">Transfer</a>
     </li>
     <li class="mt-auto">
+      <a class="btn btn-primary btn-lg border-0 squared {% is_active request 'transfers'  %}" role="button"
+        href="{% url 'transfers'  %}">Transfers</a>
+    </li>
+    <li class="mt-auto">
       <a class="btn btn-primary btn-lg border-0 squared {% is_active request 'search' index=globus_portal_framework.index %}" role="button"
         href="{% url 'search' 'perfdata' %}">Search</a>
     </li>
+      <li class="mt-auto">
+      <a class="btn btn-primary btn-lg border-0 squared {% is_active request 'flows'  %}" role="button"
+        href="{% url 'flows'  %}">Flows</a>
+    </li>
+    </li>
+      <li class="mt-auto">
+      <a class="btn btn-primary btn-lg border-0 squared {% is_active request 'flow-start'  %}" role="button"
+        href="{% url 'flow-start'  %}">Start Run</a>
+    </li>
   </ul>
 </div>
+<hr>
 
 
 <div class="row mb-5">
   <div class="col"></div>
   <div class="col-10">
     <div>
+
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
 
         {% block content %}
 

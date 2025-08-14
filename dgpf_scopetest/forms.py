@@ -18,8 +18,9 @@ class TransferForm(forms.Form):
         self.helper.layout = Layout(
             Field("endpoint_id", readonly=True),
             Field("path", readonly=True),
+            "label",
         )
-        self.helper.add_input(Submit("submit", "Start Transfer"))
+        self.helper.add_input(Submit("submit", "Start"))
 
     endpoint_id = forms.CharField(
         label="Destination Endpoint",
@@ -31,4 +32,11 @@ class TransferForm(forms.Form):
         label="Destination Path",
         max_length=80,
         required=True,
+    )
+
+    label = forms.CharField(
+        label="Label",
+        max_length=80,
+        required=True,
+        initial="Transfer from Endpoint 1",
     )

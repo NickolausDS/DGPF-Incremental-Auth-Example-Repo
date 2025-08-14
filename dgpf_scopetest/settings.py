@@ -15,6 +15,8 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+SOURCE_ENDPOINT = "6c54cade-bde5-45c1-bdea-f4bd71dba2cc"
+
 
 LOGIN_URL = "/login/globus"
 
@@ -22,6 +24,9 @@ LOGIN_URL = "/login/globus"
 SOCIAL_AUTH_GLOBUS_SCOPE = [
     "urn:globus:auth:scope:search.api.globus.org:search",
 ]
+SOCIAL_AUTH_GLOBUS_INCREMENTAL_AUTH_ENABLED = True
+
+TRANSFER_FLOW_DEFINITION_FILENAME = BASE_DIR / "dgpf_scopetest" / "transfer_flow.json"
 
 
 # Quick-start development settings - unsuitable for production
@@ -45,6 +50,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.humanize",
     "globus_portal_framework",
     "social_django",
     "crispy_forms",

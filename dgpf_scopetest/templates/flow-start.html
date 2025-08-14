@@ -1,0 +1,12 @@
+{%extends "basesite.html"%}
+{% load static index_template crispy_forms_tags %}
+
+
+{% block content %}
+<h1>Globus Flow</h1>
+
+<p>This page will start a flow.</p>
+<a href="https://app.globus.org/helpers/browse-collections?action=http://localhost:8000/flow/start/&method=GET" class="btn btn-info" role="button">Select Destination</a>
+{% load crispy_forms_tags %}
+{% crispy form  %}
+{% endblock %}

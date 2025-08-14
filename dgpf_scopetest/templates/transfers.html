@@ -1,0 +1,34 @@
+{% extends "basesite.html" %}
+{% load humanize %}
+
+{% block content %}
+
+<h1>Transfers</h1>
+<table class="table">
+<thead>
+    <tr>
+    <th scope="col">Source</th>
+    <th scope="col">Destination</th>
+    <th scope="col">Status</th>
+    <th scope="col">Start Time</th>
+    <th scope="col">Completion Time</th>
+    <th scope="col">Files Transferred</th>
+    <th scope="col">Bytes Transferred</th>
+    </tr>
+</thead>
+<tbody>
+    {% for transfer in transfers %}
+    <tr>
+    <td>{{transfer.source_endpoint_display_name}}</td>
+    <td>{{transfer.destination_endpoint_display_name}}</td>
+    <td>{{transfer.status}}</td>
+    <td>{{transfer.request_time}}</td>
+    <td>{{transfer.completion_time}}</td>
+    <td>{{transfer.files_transferred|intword}}</td>
+    <td>{{transfer.bytes_transferred|intword}}</td>
+
+    </tr>
+    {% endfor %}
+</tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "basesite.html" %}
+{% load humanize %}
+
+{% block content %}
+
+<!-- {{flows}} -->
+
+<div class="row">
+    <div class="card col-4 mr-4" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title">Deploy new Flow</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a class="btn btn-primary" href="{% url 'flow-create' %}" role="button">Create New Flow</a>
+    </div>
+    </div>
+    <div class="card col-4" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title">Deploy new Flow</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a class="btn btn-primary" href="{% url 'flow-create' %}" role="button">Create New Flow</a>
+    </div>
+    </div>
+</div>
+
+<h1>Flows</h1>
+<table class="table">
+<thead>
+    <tr>
+    <th scope="col">Selected</th>
+    <th scope="col">ID</th>
+    <th scope="col">Title</th>
+    <th scope="col">Created At</th>
+    </tr>
+</thead>
+<tbody>
+    {% for flow in flows %}
+    <tr>
+    {% if flow.selected %}
+    <td><a class="btn btn-success" href="{% url 'flow-start' %}?flow_id={{flow.id}}&title={{flow.title}}" role="button">Selected</a></td>
+    {% else %}
+    <td><a class="btn btn-primary" href="{% url 'flow-start' %}?flow_id={{flow.id}}&title={{flow.title}}" role="button">Select</a></td>
+    {% endif %}
+    <td>{{flow.id}}</td>
+    <td>{{flow.title}}</td>
+    <td>{{flow.created_at}}</td>
+
+    </tr>
+    {% endfor %}
+</tbody>
+</table>
+{% endblock %}
